@@ -1,0 +1,26 @@
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.implicitly_wait(30)
+driver.maximize_window()
+
+driver.get("http://www.google.com")
+
+field = driver.find_element_by_name("q")
+field.clear()
+
+field.send_keys("Automation Testing Interview Questions")
+field.submit()
+
+mylists= driver.find_elements_by_class_name("LC20lb")
+
+print ("Found " + str(len(mylists)) + " searches:")
+
+i=0
+for item in mylists:
+   print (item.get_attribute("innerHTML"))
+   i+=1
+   if(i>20):
+      break
+
+driver.quit()
